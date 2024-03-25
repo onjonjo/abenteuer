@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Abenteuer</title>
+        <script type="text/javascript" src="app.js"></script>
+    </head>
     <body>
-    <h1>Adventure</h1>
+    <h1>Abenteuer</h1>
 
     <p>
-        Hier kommt ein Bild hin
+        <img id="bild" crossorigin="anonymous" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/The_sun_rise.jpg/1024px-The_sun_rise.jpg" alt="Bild" width="640" height="480" >
     </p>
     <p>
         Du stehst an einer Lichtung. Vor dir ist ein grosses Tor.
@@ -12,8 +18,10 @@
 
     <p>
         <h2>Umgebung</h2>
-        <button>Tor</button>
-        <button>Katze</button>
+        <span id="dir-list"> 
+            <button>Tor</button>
+            <button>Katze</button>
+        </span>
     </p>
 
     <p>
@@ -23,6 +31,9 @@
         <button>Benutze</button>
     </p>
 
+    <script>
+        window.onload = start
+    </script>
 
     </body>
 </html>
