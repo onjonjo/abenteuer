@@ -5,7 +5,7 @@ rooms = {}
 rooms.Garten = {
     "img": "pics/garden.jpg",
     "enter" : (player) => {
-        player.game.say("Du betrittst eine wunderschönen Garten.");
+        return "Du betrittst eine wunderschönen Garten.";
     },
     "leave": "Du verlässt den wunderschönen Garten.",
     "ways": {
@@ -26,6 +26,8 @@ rooms.Garten = {
 
 rooms.Kirche = {
     "img": "pics/church.jpg",
+    "enter": "Du näherst dich einer Kirche.",
+    "leave": "Du verlässt die Kirche.",
     "ways": {
         "Süden": "Garten"
     },
@@ -36,6 +38,8 @@ rooms.Kirche = {
 
 rooms.Teich = {
     "img": "pics/pond.jpg",
+    "enter": "Du näherst dich einem Teich.",
+    "leave": "Du verlässt den Teich.",
     "ways": {
         "Norden": "Garten"
     },
@@ -47,7 +51,9 @@ rooms.Teich = {
 player = {
     "actions": ["nimm", "betrachte"],
 }
+player.log = "Willkommen in unserem Abenteuer"
 player.room = "Garten"
+
 player.inventory = ["Taschenmesser"]
 player.game =  {
     "rooms": rooms
@@ -65,6 +71,16 @@ function select_action(action) {
 }
 
 function move_to(direction) {
+
+    let old_room = player.game.rooms[player.room];
+
+    if (old_room.leave instanceof Function) {
+        player.log += "\n" + old_room.leave(player);    
+    } else {
+        player.log += "\n" + old_room.leave;
+    }
+
+    player.room = direction;
 
     let new_room = player.game.rooms[direction];
     
@@ -84,6 +100,14 @@ function move_to(direction) {
     const bild = document.getElementById("bild");
     bild.setAttribute("src", new_room.img);
 
+    if (new_room.enter instanceof Function) {
+        player.log += "\n" + new_room.enter(player);    
+    } else {
+        player.log += "\n" + new_room.enter;
+    }
+    let thelog = document.getElementById("log"); 
+    thelog.replaceChildren(document.createTextNode(player.log));
+    thelog.scrollTop = thelog.scrollHeight;
 }
 
 
@@ -91,4 +115,3 @@ function start() {
     move_to("Garten");
 }
 
-    
