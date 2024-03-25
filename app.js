@@ -3,7 +3,7 @@
 
 rooms = {}
 rooms.Garten = {
-    "img": "https://media01.living4media.com/largepreviews/NDI0NjY5NzQ0/13699024-Kleingarten-im-Herbst-mit-Apfelbaum-und-Glashaus.jpg",
+    "img": "pics/garden.jpg",
     "enter" : (player) => {
         player.game.say("Du betrittst eine wunderschönen Garten.");
     },
@@ -25,7 +25,7 @@ rooms.Garten = {
 }
 
 rooms.Kirche = {
-    "img": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Ahekapelle_im_Genfbachtal-2209.jpg",
+    "img": "pics/church.jpg",
     "ways": {
         "Süden": "Garten"
     },
@@ -35,7 +35,7 @@ rooms.Kirche = {
 }
 
 rooms.Teich = {
-    "img": "https://www.mein-schoener-garten.de/sites/default/files/styles/teaser_15_9_full_lg/public/seerosen-501699-blp-msg.jpg",
+    "img": "pics/pond.jpg",
     "ways": {
         "Norden": "Garten"
     },
@@ -91,3 +91,4 @@ function start() {
     move_to("Garten");
 }
 
+    
