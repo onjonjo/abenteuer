@@ -1,36 +1,35 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Abenteuer</title>
-        <script type="text/javascript" src="app.js"></script>
-    </head>
-    <body>
+<html lang="de-de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Abenteuer</title>
+    <script type="text/javascript" src="app.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
     <p>
-        <img id="bild" alt="Bild" width="320" height="240" >
+        <img id="bild" alt="Bild" width="320" height="240">
     </p>
     <textarea id="log" name="text" cols="80" rows="10" readonly="1"></textarea>
-    <p>
-    <input id="command" type="text" size="80">
-    </p>
-    <p>
-        Gehe in Richtung: 
-        <span id="dir-list"> 
+    <footer>
+        <input id="command" type="text" size="80">
+        Gehe in Richtung:
+        <span id="dir-list">
         </span>
-    </p>
-    <p>
-        <span id="actions"> 
-   </span>
-   </p>
-    <span id="inventory"> 
-    </span>
-    <span id="things"> 
-    </span>
-
+        <span id="actions">
+        </span>
+        <span id="inventory">
+        </span>
+        <span id="things">
+        </span>
+    </footer>
     <script>
         window.onload = start
     </script>
 
-    </body>
+</body>
+
 </html>

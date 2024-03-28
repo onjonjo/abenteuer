@@ -186,8 +186,6 @@ function build_room(new_room_name)
     
     document.getElementById("actions").replaceWith(new_actions_span);
 
-   
-
 }
 
 
