@@ -2,6 +2,12 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #407b40;
+    display: flex;
+    flex-direction: column;
+
+    min-height: 100vh;
+
 }
 
 .container {
@@ -28,22 +34,42 @@ a {
 a:hover {
     text-decoration: underline;
 }
-.button {
+
+button {
     display: inline-block;
-    padding: 20px 20px;
-    background-color: #007bff;
+    padding: 10px 10px;
+    margin: 5px;
+    background-color: #107b00;
     color: #fff;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
 }
 
-.button:hover {
-    background-color: #0056b3;
+button:hover {
+    background-color: #105600;
 }
 
-.button:active {
-    background-color: #003d80;
+button:active {
+    background-color: #103d00;
+}
+
+#bild {
+    margin: 0px;
+    padding: 10px;
+}
+
+#log {
+    flex-grow: 1;
+    margin: 10px;
+    resize: none;
+    background-color: #307d30;
+    color: aqua;
+}
+
+#command {
+    margin: 10px;
+    width: 90%;
 }
 
 #things {
