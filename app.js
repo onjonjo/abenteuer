@@ -120,15 +120,21 @@ function get_response(action, player) {
     return action instanceof Function ? action(player) : action;
 }
 
-function move_to(direction) {
+function move_to(new_room_name) {
 
     const old_room = player.game.rooms[player.room];
-   
-    player.log += '\n' + get_response(old_room.leave, player);
-   
-    player.room = direction;
 
-    const new_room = player.game.rooms[direction];
+    add_to_log(get_response(old_room.leave, player));
+    player.room = new_room_name;
+
+    build_room(new_room_name);
+
+    add_to_log(get_response(player.game.rooms[player.room].enter, player));
+}
+function build_room(new_room_name) 
+{
+       
+    const new_room = player.game.rooms[new_room_name];
     
     const direction_list = document.getElementById("dir-list");
     const new_list = document.createElement("span");
@@ -180,16 +186,12 @@ function move_to(direction) {
     
     document.getElementById("actions").replaceWith(new_actions_span);
 
-    player.log += '\n' + get_response(old_room.enter, player);
-
-    let thelog = document.getElementById("log"); 
-    thelog.textContent = player.log;
-    thelog.scrollTop = thelog.scrollHeight;
+   
 
 }
 
 
 function start() {
-    move_to("Garten");
+    build_room("Garten");
 }
 
