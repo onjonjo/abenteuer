@@ -31,7 +31,7 @@ rooms.Kirche = {
     "ways": {
         "Süden": "Garten"
     },
-    "things": ["Blume", "Apfelbaum"],
+    "things": ["Taufstein", "Kerze"],
     "action": {
     }
 }
@@ -48,12 +48,22 @@ rooms.Teich = {
     }
 }
 
+answers = {
+    "betrachte Taschenmesser": "Ein Taschenmesser mit einer Klinge und einer Schere.",
+    "betrachte Blume": "Eine wunderschöne Blume.",
+    "betrachte Apfelbaum": "Ein Apfelbaum mit vielen Äpfeln.",
+    "betrachte Kirche": "Eine alte Kirche.",
+    "betrachte Teich": "Ein Teich mit Seerosen.",
+    "benutze Taschenmesser": "Wozu willst du das Taschenmesser benutzen?",
+    "betrachte" : "Du siehst nichts besonderes.",
+}
+
+
 player = {
-    "actions": ["nimm", "betrachte"],
 }
 player.log = "Willkommen in unserem Abenteuer"
 player.room = "Garten"
-
+player.commands = ["Betrachte", "Nimm", "Benutze"] 
 player.inventory = ["Taschenmesser"]
 player.game =  {
     "rooms": rooms
@@ -62,52 +72,120 @@ player.game =  {
 
 // program code below
 
-function select_item(item) {
 
+function execute_command(cmd) { 
+
+
+    var m_len = 0;
+    var final_action = "Das kann ich nicht tun.";
+
+    for (const [command, action] of Object.entries(answers))  {
+        const m = cmd.match(new RegExp(command, "i" ));
+        if (m && m.length && m[0].length > m_len) {
+            final_action = action;
+            m_len = m[0].length;  
+        }
+    }
+    const resp = get_response(final_action, player);
+    add_to_log("\n" + cmd);
+    add_to_log("\n" + resp);
 }
+
+function add_to_log(text) {
+    player.log += '\n' + text;
+
+    let thelog = document.getElementById("log"); 
+    thelog.textContent = player.log;
+    thelog.scrollTop = thelog.scrollHeight;
+}
+
+function select_item(item) {
+    document.getElementById("command").value += " " + item;
+    execute_command(document.getElementById("command").value);
+}
+
+function select_thing(item) {
+    document.getElementById("command").value += " " + item;
+    execute_command(document.getElementById("command").value);
+}
+
 
 function select_action(action) {
     player.game.current_action = action;
+    document.getElementById("command").value = action;
+}
+
+
+function get_response(action, player) {
+    return action instanceof Function ? action(player) : action;
 }
 
 function move_to(direction) {
 
-    let old_room = player.game.rooms[player.room];
-
-    if (old_room.leave instanceof Function) {
-        player.log += "\n" + old_room.leave(player);    
-    } else {
-        player.log += "\n" + old_room.leave;
-    }
-
+    const old_room = player.game.rooms[player.room];
+   
+    player.log += '\n' + get_response(old_room.leave, player);
+   
     player.room = direction;
 
-    let new_room = player.game.rooms[direction];
+    const new_room = player.game.rooms[direction];
     
     const direction_list = document.getElementById("dir-list");
     const new_list = document.createElement("span");
     
     for (const [dir, room]  of Object.entries(new_room.ways)) {
         const b =document.createElement('button');
-        b.appendChild(document.createTextNode(dir));
-        b.onclick =  () => move_to(room);
+        b.innerText = dir;
+        b.onclick = () => move_to(room);
         new_list.appendChild(b);
     }
 
     direction_list.replaceWith(new_list);
     new_list.setAttribute("id", "dir-list");
 
+
     const bild = document.getElementById("bild");
     bild.setAttribute("src", new_room.img);
-
-    if (new_room.enter instanceof Function) {
-        player.log += "\n" + new_room.enter(player);    
-    } else {
-        player.log += "\n" + new_room.enter;
+    
+    const inventory = document.createElement("span");
+    inventory.setAttribute("id", "inventory");
+    for (const item of player.inventory) {
+        const b = document.createElement('button');
+        b.innerText = item;
+        b.onclick = () => select_item(item);
+        inventory.appendChild(b);
     }
+    
+    document.getElementById("inventory").replaceWith(inventory);
+    
+    const new_things_span = document.createElement("span");
+    new_things_span.setAttribute("id", "things");
+    for (const item of new_room.things) {
+        const b = document.createElement('button');
+        b.innerText = item;
+        b.onclick = () => select_thing(item);
+        new_things_span.appendChild(b);
+    }
+    
+    document.getElementById("things").replaceWith(new_things_span);
+
+    const new_actions_span = document.createElement("span");
+    new_actions_span.setAttribute("id", "actions");
+    for (const item of player.commands) {
+        const b = document.createElement('button');
+        b.innerText = item;
+        b.onclick = () => select_action(item);
+        new_actions_span.appendChild(b);
+    }
+    
+    document.getElementById("actions").replaceWith(new_actions_span);
+
+    player.log += '\n' + get_response(old_room.enter, player);
+
     let thelog = document.getElementById("log"); 
-    thelog.replaceChildren(document.createTextNode(player.log));
+    thelog.textContent = player.log;
     thelog.scrollTop = thelog.scrollHeight;
+
 }
 
 
