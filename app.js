@@ -1,6 +1,4 @@
 
-
-
 rooms = {}
 rooms.Garten = {
     "img": "pics/garden.jpg",
@@ -81,8 +79,8 @@ player.game = {
 
 function transfer(things_remove, things_add, items_remove, items_add, msg) {
     return (player) => {
-        player.game.rooms[player.room].things = player.game.rooms[player.room].things.filter((x) => things_remove.indexof(x) >= 0).concat(things_add);
-        player.inventory = player.inventory.filter((x) => items_remove.indexof(x) >= 0).concat(items_add);
+        player.game.rooms[player.room].things = player.game.rooms[player.room].things.filter((x) => things_remove.indexOf(x) < 0).concat(things_add);
+        player.inventory = player.inventory.filter((x) => items_remove.indexOf(x) < 0).concat(items_add);
         return msg;
     }
 }
@@ -177,6 +175,7 @@ function move_to(new_room_name) {
 
     add_to_log(get_response(player.game.rooms[player.room].enter, player));
 }
+
 function build_room(new_room_name) {
 
     const new_room = player.game.rooms[new_room_name];
