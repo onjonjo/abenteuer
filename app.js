@@ -54,14 +54,33 @@ answers = {
     "betrachte Teich": "Ein Teich mit Seerosen.",
     "benutze Taschenmesser": "Wozu willst du das Taschenmesser benutzen?",
     "benutze Taschenmesser mit Apfelbaum": [
-        transfer([],["Ast"],[],[],
+        transfer([], ["Ast"], [], [],
             "Du schneidest einen Ast ab."),
         "Du ritzt deine Namen in den Baum.",
         "Der Baum soll nicht weiter verschandelt werden."
     ],
     " Katze": "Die Katze miaut dich an.",
     "betrachte": "Du siehst nichts besonderes.",
-    "Nimm Ast": transfer(["Ast"], ["Apfel"], [""], ["Ast"], "Du hebst den Ast auf. An dem Ast hing ein Apfel, der zu Boden fiel."),
+    "Nimm Ast": [
+        transfer(["Ast"], ["Apfel"], [""], ["Ast"], "Du hebst den Ast auf. An dem Ast hing ein Apfel, der zu Boden fiel."),
+        "Du hast den Ast schon."
+    ],
+    "Nimm Apfel": [
+        transfer(["Apfel"], [], [""], ["Apfel"], "Du hebst den Apfel auf. Er ist schön rot."),
+        "Du nimmst den Apfel nochmals in die Hand. Er ist immer noch schön rot."
+    ],
+    "Benutze Taschenmesser mit Apfel|Benutze Apfel mit Taschenmesser": transfer([], [], ["Apfel"], ["Wurm"],
+       "Du schneidest den Apfel auf und findest einen Wurm."),
+    
+    "Betrachte Taufstein": [transfer([], ["Tuch"], [], [], "Ein alter Taufstein mit einem Tuch."), 
+        "Immer noch der gleiche Taufstein."
+    ],
+    "Betrachte Tuch": [transfer([], ["Faden"], [], [], "An dem Tuch hängt ein langer Faden."),
+        "Ein schönes Tuch."
+    ],
+    "Nimm Faden": [transfer(["Faden"], [], [], ["Faden"], "Du hebst den Faden auf."),
+        "Du hast den Faden schon."
+    ],
 }
 
 
