@@ -57,8 +57,12 @@ answers = {
         transfer([], ["Ast"], [], [],
             "Du schneidest einen Ast ab."),
         "Du ritzt deine Namen in den Baum.",
-        "Der Baum soll nicht weiter verschandelt werden."
-    ],
+        "Der Baum soll nicht weiter verschandelt werden."],
+    "benutze Taschenmesser mit Bank": [
+        "du ritzt deinen Namen in die Bank. Die Bank ist so alt, da macht das nichts.", 
+         "Wozu? Dein Name steht Doch schon auf der Bank, oder?",
+         "Na schön, du ritzt den Namen deines Haustiers in die Bank. Nun ist aber gut!",
+        "Das reicht jetzt aber."],
     " Katze": "Die Katze miaut dich an.",
     "Benutze Faden mit Katze|Benutze Katze mit Faden": "Die Katze spielt mit dem Faden.",
     "Benutze Taschenmesser mit Katze|Benutze Katze mit Taschenmesser": "Nein, das lassen wir besser sein.",
@@ -85,7 +89,7 @@ answers = {
     ],
     "Benutze Faden mit Ast|Benutze Ast mit Faden": transfer([], [], ["Faden", "Ast"], ["Ast mit Faden"], 
         "Du knotest den Faden an das Ende des Astes fest."),
-    "Benutze Ast mit Faden mit Haken": transfer([], [], ["Ast mit Faden", "Haken"], ["Angel"], 
+    "Benutze Ast mit Faden mit krummer Nagel": transfer([], [], ["Ast mit Faden", "krummer Nagel"], ["Angel"], 
         "Du hast eine Angel gebaut."),
     "Benutze Angel mit Wurm|Benutze Wurm mit Angel": transfer([], [], ["Angel", "Wurm"], ["Angel mit Köder"], 
         "Damit sollte sich doch was fangen lassen."),
