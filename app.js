@@ -70,9 +70,9 @@ answers = {
         "Du nimmst den Apfel nochmals in die Hand. Er ist immer noch schön rot."
     ],
     "Benutze Taschenmesser mit Apfel|Benutze Apfel mit Taschenmesser": transfer([], [], ["Apfel"], ["Wurm"],
-       "Du schneidest den Apfel auf und findest einen Wurm."),
-    
-    "Betrachte Taufstein": [transfer([], ["Tuch"], [], [], "Ein alter Taufstein mit einem Tuch."), 
+        "Du schneidest den Apfel auf und findest einen Wurm."),
+
+    "Betrachte Taufstein": [transfer([], ["Tuch"], [], [], "Ein alter Taufstein mit einem Tuch."),
         "Immer noch der gleiche Taufstein."
     ],
     "Betrachte Tuch": [transfer([], ["Faden"], [], [], "An dem Tuch hängt ein langer Faden."),
@@ -95,7 +95,15 @@ player.game = {
     "rooms": rooms
 }
 
-
+/**
+ * 
+ * @param {Array<string>} things_remove 
+ * @param {Array<string>} things_add 
+ * @param {Array<string>} items_remove 
+ * @param {Array<string>} items_add 
+ * @param {string} msg 
+ * @returns 
+ */
 function transfer(things_remove, things_add, items_remove, items_add, msg) {
     return (player) => {
         player.game.rooms[player.room].things = player.game.rooms[player.room].things.filter((x) => things_remove.indexOf(x) < 0).concat(things_add);
@@ -106,9 +114,7 @@ function transfer(things_remove, things_add, items_remove, items_add, msg) {
 
 // program code below
 
-
 function execute_command(cmd) {
-
 
     var m_len = 0;
     var final_action = "Das kann ich nicht tun.";
@@ -133,6 +139,11 @@ function add_to_log(text) {
     thelog.scrollTop = thelog.scrollHeight;
 }
 
+/**
+ * 
+ * @param {string} item 
+ * @returns 
+ */
 function select_item(item) {
     if (player.current_command != null) {
         if (player.current_command === "Benutze") {
@@ -147,6 +158,9 @@ function select_item(item) {
     build_room(player.room);
 }
 
+/**
+ *  @param {string} thing
+ */
 function select_thing(thing) {
     if (player.current_command != null) {
         if (player.current_command === "Benutze") {
