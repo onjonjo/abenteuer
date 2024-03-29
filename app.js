@@ -43,7 +43,7 @@ rooms.Teich = {
     "ways": {
         "Norden": "Garten"
     },
-    "things": ["Seerose"],
+    "things": ["Seerose", "Katze"],
     "action": {
     }
 }
@@ -56,10 +56,14 @@ answers = {
     "betrachte Teich": "Ein Teich mit Seerosen.",
     "benutze Taschenmesser": "Wozu willst du das Taschenmesser benutzen?",
     "benutze Taschenmesser mit Apfelbaum": [
+        transfer([],["Ast"],[],[],
+            "Du schneidest einen Ast ab."),
         "Du ritzt deine Namen in den Baum.",
         "Der Baum soll nicht weiter verschandelt werden."
     ],
+    " Katze": "Die Katze miaut dich an.",
     "betrachte": "Du siehst nichts besonderes.",
+    "Nimm Ast": transfer(["Ast"], ["Apfel"], [""], ["Ast"], "Du hebst den Ast auf. An dem Ast hing ein Apfel, der zu Boden fiel."),
 }
 
 
