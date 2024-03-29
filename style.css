@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #407b40;
+    background-color: #d5e1d5;
     display: flex;
     flex-direction: column;
 
@@ -37,9 +37,9 @@ a:hover {
 
 button {
     display: inline-block;
-    padding: 10px 10px;
-    margin: 5px;
-    background-color: #107b00;
+    padding: .6em;
+    margin: .1em;
+    background-color: #352911;
     color: #fff;
     border-radius: 5px;
     text-decoration: none;
@@ -47,11 +47,11 @@ button {
 }
 
 button:hover {
-    background-color: #105600;
+    background-color: #634e23;
 }
 
 button:active {
-    background-color: #103d00;
+    background-color: #846832;
 }
 
 #bild {
@@ -63,8 +63,8 @@ button:active {
     flex-grow: 1;
     margin: 10px;
     resize: none;
-    background-color: #307d30;
-    color: aqua;
+    background-color: #8a9b8a;
+    color: rgb(27, 46, 29);
 }
 
 #command {
