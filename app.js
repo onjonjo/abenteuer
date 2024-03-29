@@ -10,16 +10,8 @@ rooms.Garten = {
         "Norden": "Kirche",
         "Süden": "Teich"
     },
-    "things": ["Blume", "Apfelbaum"],
-    "action": {
-        "nimm Blume": (player) => {
-            if (player.inventory.find((x) => x == "Blume")) {
-                player.game.say("Du hast schon eine Blume. Das sollte reichen.")
-            } else {
-                player.inventory.push("Blume");
-            }
-        }
-    }
+    "things": ["Bank", "Apfelbaum"],
+   
 }
 
 rooms.Kirche = {
@@ -41,7 +33,7 @@ rooms.Teich = {
     "ways": {
         "Norden": "Garten"
     },
-    "things": ["Seerose", "Katze"],
+    "things": ["Teich", "Katze"],
     "action": {
     }
 }
@@ -51,7 +43,15 @@ answers = {
     "betrachte Blume": "Eine wunderschöne Blume.",
     "betrachte Apfelbaum": "Ein Apfelbaum mit vielen Äpfeln.",
     "betrachte Kirche": "Eine alte Kirche.",
-    "betrachte Teich": "Ein Teich mit Seerosen.",
+    "betrachte Teich": "Ein Teich mit Seerosen. Darin schwimmt ein Fisch.",
+    "Betrachte Faden": "Ein langer Faden. Er sieht sehr robust aus.",
+    "Betrachte Bank": [transfer([], ["krummer Nagel"], [], [],
+        "Eine alte Bank. In der Seite steckt locker ein alter krummer Nagel."),
+        "Die Bank ist immer noch da."
+    ],
+    "Nimm krummer Nagel": [transfer(["krummer Nagel"], [], [], ["krummer Nagel"], 
+        "Du kannst den Nagel einfach aus dem alten Holz ziehen"),
+        "Du hast den Nagel doch schon."],       
     "benutze Taschenmesser": "Wozu willst du das Taschenmesser benutzen?",
     "benutze Taschenmesser mit Apfelbaum": [
         transfer([], ["Ast"], [], [],
@@ -60,6 +60,8 @@ answers = {
         "Der Baum soll nicht weiter verschandelt werden."
     ],
     " Katze": "Die Katze miaut dich an.",
+    "Benutze Faden mit Katze|Benutze Katze mit Faden": "Die Katze spielt mit dem Faden.",
+    "Benutze Taschenmesser mit Katze|Benutze Katze mit Taschenmesser": "Nein, das lassen wir besser sein.",
     "betrachte": "Du siehst nichts besonderes.",
     "Nimm Ast": [
         transfer(["Ast"], ["Apfel"], [""], ["Ast"], "Du hebst den Ast auf. An dem Ast hing ein Apfel, der zu Boden fiel."),
@@ -81,6 +83,21 @@ answers = {
     "Nimm Faden": [transfer(["Faden"], [], [], ["Faden"], "Du hebst den Faden auf."),
         "Du hast den Faden schon."
     ],
+    "Benutze Faden mit Ast|Benutze Ast mit Faden": transfer([], [], ["Faden", "Ast"], ["Ast mit Faden"], 
+        "Du knotest den Faden an das Ende des Astes fest."),
+    "Benutze Ast mit Faden mit Haken": transfer([], [], ["Ast mit Faden", "Haken"], ["Angel"], 
+        "Du hast eine Angel gebaut."),
+    "Benutze Angel mit Wurm|Benutze Wurm mit Angel": transfer([], [], ["Angel", "Wurm"], ["Angel mit Köder"], 
+        "Damit sollte sich doch was fangen lassen."),
+    "Benutze Angel mit Köder mit Teich|Benutze Teich mit Angel mit Köder": [
+        "Du wirfst die Angel aus und wartest. Leider passiert nichts.",
+        "Du versuchst es nochmals. Plötzlich zuckt die Angel. Du ruckst an, aber im letzten Moment entwischt der Fisch.",
+        transfer([], [], ["Angel mit Köder"], ["Angel", "Fisch"],
+         "Du versuchst es nochmals. Diesmal hast du Glück. Du ziehst einen Fisch an Land."),
+    ],
+    "Betrachte Fisch": "Ein glibberiger Karpfen.",
+    "Benutze Fisch mit Katze|Benutze Katze mit Fisch": transfer(["Katze"], [], ["Fisch"], ["Katze"],
+     "Die Katze frisst den Fisch. Jetzt ist sie dein Freund und folgt dir"),
 }
 
 
@@ -113,7 +130,10 @@ function transfer(things_remove, things_add, items_remove, items_add, msg) {
 }
 
 // program code below
-
+/**
+ * 
+ * @param {string} cmd 
+ */
 function execute_command(cmd) {
 
     var m_len = 0;
