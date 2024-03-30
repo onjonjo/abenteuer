@@ -71,7 +71,7 @@ answers = {
         transfer(["Ast"], ["Apfel"], [""], ["Ast"], "Du hebst den Ast auf. An dem Ast hing ein Apfel, der zu Boden fiel."),
         "Du hast den Ast schon."
     ],
-    "Nimm Apfel": [
+    "Nimm Apfel$": [
         transfer(["Apfel"], [], [""], ["Apfel"], "Du hebst den Apfel auf. Er ist schön rot."),
         "Du nimmst den Apfel nochmals in die Hand. Er ist immer noch schön rot."
     ],
