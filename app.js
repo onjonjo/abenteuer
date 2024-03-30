@@ -75,6 +75,7 @@ answers = {
         transfer(["Apfel"], [], [""], ["Apfel"], "Du hebst den Apfel auf. Er ist schön rot."),
         "Du nimmst den Apfel nochmals in die Hand. Er ist immer noch schön rot."
     ],
+    "Nimm Apfelbaum":"Der steckt fest im Boden.",
     "Benutze Taschenmesser mit Apfel|Benutze Apfel mit Taschenmesser": transfer([], [], ["Apfel"], ["Wurm"],
         "Du schneidest den Apfel auf und findest einen Wurm."),
 
