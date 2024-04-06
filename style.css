@@ -1,13 +1,19 @@
-body {
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+html, body {
     font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
-    background-color: #d5e1d5;
+    background: rgb(199,174,123);
+    background: radial-gradient(circle, rgba(199,174,123,1) 8%, rgba(145,124,71,1) 35%, rgba(138,132,121,1) 100%); 
     display: flex;
     flex-direction: column;
-
-    min-height: 100vh;
-
+    max-width: 40em;
+    
+    /* min-height: 100vh; */
+    height: 100%;
 }
 
 .container {
@@ -26,14 +32,6 @@ p {
     color: #666;
 }
 
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
 
 button {
     display: inline-block;
@@ -55,22 +53,68 @@ button:active {
 }
 
 #bild {
-    margin: 0px;
+    margin: 0 auto;
     padding: 10px;
+    flex-grow: 1;
+    display: block;
+    width: 80%;    
+    height: auto;
+    object-fit: cover;
+    object-position: center;
+    display: hidden;
+
+}
+
+
+
+header 
+{
+    flex-grow: 1;
+    height: 30px;
+    flex-direction: row;
+}
+
+main {
+    flex-grow: 1;
+    flex-direction: column;
+    display: flex;
+    
 }
 
 #log {
     flex-grow: 1;
-    margin: 10px;
+    margin: 0px ;
     resize: none;
-    background-color: #8a9b8a;
+    border: 0px;
+    padding: 5px;
+    background-color: #acb099da;
+    display: block;
+    box-sizing: border-box;
     color: rgb(27, 46, 29);
+    text-shadow: 3px, 3px, #666;
+    min-width: 30em;
+}
+textarea:focus {
+    border: 0px ;
+    outline: none;
+  
 }
 
 #command {
-    margin: 10px;
-    width: 90%;
+    margin: 0px;
+    padding: 10px;
+    border: 0px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 5px;
+    width: 100%;
+    display: block;
+    box-sizing: border-box;
 }
+input[type=text]:focus {
+    border: 0px ;
+    outline: none;
+  }
 
 #things {
     display: block;

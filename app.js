@@ -7,8 +7,8 @@ rooms.Garten = {
     },
     "leave": "Du verlässt den wunderschönen Garten.",
     "ways": {
-        "Norden": "Kirche",
-        "Süden": "Teich"
+        "Gehe nach Norden": "Kirche",
+        "Gehe nach Süden": "Teich"
     },
     "things": ["Bank", "Apfelbaum"],
    
@@ -19,7 +19,7 @@ rooms.Kirche = {
     "enter": "Du näherst dich einer Kirche.",
     "leave": "Du verlässt die Kirche.",
     "ways": {
-        "Süden": "Garten"
+        "Gehe nach Süden": "Garten"
     },
     "things": ["Taufstein", "Kerze"],
     "action": {
@@ -31,7 +31,7 @@ rooms.Teich = {
     "enter": "Du näherst dich einem Teich.",
     "leave": "Du verlässt den Teich.",
     "ways": {
-        "Norden": "Garten"
+        "Gehe nach Norden": "Garten"
     },
     "things": ["Teich", "Katze"],
     "action": {
@@ -72,10 +72,10 @@ answers = {
         "Du hast den Ast schon."
     ],
     "Nimm Apfel": [
-        transfer(["Apfel"], [], [""], ["Apfel"], "Du hebst den Apfel auf. Er ist schön rot."),
+        transfer(["Apfel"], [], ["Apfel"], ["Apfel"], "Du hebst den Apfel auf. Er ist schön rot."),
         "Du nimmst den Apfel nochmals in die Hand. Er ist immer noch schön rot."
     ],
-    "Benutze Taschenmesser mit Apfel|Benutze Apfel mit Taschenmesser": transfer([], [], ["Apfel"], ["Wurm"],
+    "Benutze Taschenmesser mit Apfel|Benutze Apfel mit Taschenmesser": transfer(["Apfel"], [], ["Apfel"], ["Wurm"],
         "Du schneidest den Apfel auf und findest einen Wurm."),
 
     "Betrachte Taufstein": [transfer([], ["Tuch"], [], [], "Ein alter Taufstein mit einem Tuch."),
@@ -107,7 +107,7 @@ answers = {
 
 player = {
 }
-player.log = "Willkommen in unserem Abenteuer"
+player.log = ""
 player.room = "Garten"
 player.commands = ["Betrachte", "Nimm", "Benutze"]
 player.current_command = null;
@@ -151,8 +151,8 @@ function execute_command(cmd) {
         }
     }
     const resp = get_response(final_action, player);
-    add_to_log("\n" + cmd);
-    add_to_log("\n" + resp);
+    add_to_log(cmd);
+    add_to_log(resp);
 }
 
 function add_to_log(text) {
@@ -291,6 +291,7 @@ function build_room(new_room_name) {
 
 
 function start() {
+    add_to_log("Willkommen im uunserem Spiel. Du kannst die Richtung mit den Buttons wählen. Du kannst auch Dinge betrachten, nehmen und benutzen. Viel Spaß!");
     build_room("Garten");
 }
 
