@@ -71,11 +71,20 @@ answers = {
         transfer(["Ast"], ["Apfel"], [""], ["Ast"], "Du hebst den Ast auf. An dem Ast hing ein Apfel, der zu Boden fiel."),
         "Du hast den Ast schon."
     ],
+<<<<<<< HEAD
     "Nimm Apfel": [
         transfer(["Apfel"], [], ["Apfel"], ["Apfel"], "Du hebst den Apfel auf. Er ist schön rot."),
         "Du nimmst den Apfel nochmals in die Hand. Er ist immer noch schön rot."
     ],
     "Benutze Taschenmesser mit Apfel|Benutze Apfel mit Taschenmesser": transfer(["Apfel"], [], ["Apfel"], ["Wurm"],
+=======
+    "Nimm Apfel$": [
+        transfer(["Apfel"], [], [""], ["Apfel"], "Du hebst den Apfel auf. Er ist schön rot."),
+        "Du nimmst den Apfel nochmals in die Hand. Er ist immer noch schön rot."
+    ],
+    "Nimm Apfelbaum":"Der steckt fest im Boden.",
+    "Benutze Taschenmesser mit Apfel|Benutze Apfel mit Taschenmesser": transfer([], [], ["Apfel"], ["Wurm"],
+>>>>>>> 848da129766d80f998b770984b187068646215eb
         "Du schneidest den Apfel auf und findest einen Wurm."),
 
     "Betrachte Taufstein": [transfer([], ["Tuch"], [], [], "Ein alter Taufstein mit einem Tuch."),
