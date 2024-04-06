@@ -291,7 +291,7 @@ function build_room(new_room_name) {
 
 
 function start() {
-    add_to_log("Willkommen im uunserem Spiel. Du kannst die Richtung mit den Buttons wählen. Du kannst auch Dinge betrachten, nehmen und benutzen. Viel Spaß!");
+    add_to_log("Willkommen im unserem Spiel. Du kannst die Richtung mit den Buttons wählen. Du kannst auch Dinge betrachten, nehmen und benutzen. Viel Spaß!");
     build_room("Garten");
 }
 
